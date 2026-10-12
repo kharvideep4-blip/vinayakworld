@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper font-sans text-navy-900 antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md bg-gold-400 px-5 py-3 text-sm font-semibold text-navy-950 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-gold-300 hover:shadow-md active:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 focus-visible:ring-offset-2;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-md border border-white/40 px-5 py-3 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-white/10 active:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-white;
+  }
+  .btn-dark {
+    @apply inline-flex items-center justify-center rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-navy-700 hover:shadow-md active:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-navy-500 focus-visible:ring-offset-2;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-gold-700;
+  }
+  .section-title {
+    @apply text-3xl font-semibold leading-tight text-navy-900 sm:text-4xl;
+  }
+}
+
+@layer utilities {
+  .hero-zoom {
+    animation: heroZoom 9s ease-out forwards;
+  }
+  .page-enter {
+    animation: pageEnter 0.45s ease-out both;
+  }
+  .hero-rise {
+    animation: pageEnter 0.8s ease-out both;
+  }
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-zoom, .page-enter, .hero-rise { animation: none; }
+}
+
+
+/* Course hero: floating particles and orbs */
+.particle {
+  opacity: 0.7;
+  animation-name: particleFloat;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.orb-float-slow { animation: orbFloat 14s ease-in-out infinite; }
+.orb-float-medium { animation: orbFloat 10s ease-in-out infinite reverse; }
+.orb-float-fast { animation: orbFloat 7s ease-in-out infinite; }
+
+@keyframes particleFloat {
+  0%, 100% { transform: translate(0, 0); opacity: 0.35; }
+  50% { transform: translate(14px, -26px); opacity: 1; }
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -24px) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle, .orb-float-slow, .orb-float-medium, .orb-float-fast { animation: none; }
+}
+
+/* Home page enrolment pop-up */
+.enroll-pop { animation: enrollIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes enrollIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) { .enroll-pop { animation: none; } }
